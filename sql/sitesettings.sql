@@ -8,5 +8,5 @@ CREATE TABLE sitesettings (
 );
 
 /* The defualt settings template with a stock alert and site maintenance disabled. */
-INSERT INTO `sitesettings` (`alert_enabled`, `site_maintenance`, `alert_message`, `alert_color`, `id`) VALUES
-(1, 0, 'RobloxClone is in development!', 'primary', 1);
+INSERT INTO `sitesettings` (`alert_enabled`, `site_maintenance`, `alert_message`, `alert_color`) VALUES
+(1, 0, 'RobloxClone is in development!', 'primary');
