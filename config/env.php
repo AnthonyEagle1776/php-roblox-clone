@@ -1,5 +1,5 @@
 <?php
-// The ENV file which strongly resembles a Laravel project's ENV file. (for ease of use)
+// The ENV file which strongly resembles the Laravel default env (for ease of use)
 
 // NOTE: Fill in YOUR OWN variables
 
