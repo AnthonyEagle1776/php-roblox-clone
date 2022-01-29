@@ -44,22 +44,13 @@ function IsVariableSet($variable)
         return false;
     }
 }
-// check if SQL boolean types (0 or 1) are enabled and if so return true or false.
-function IsSqlVarEnabled($variable)
-{
-    if ($variable = 1) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-// check if alert is enabled
-function IsAlertEnabled($boolean)
+// check if variable is enabled
+function IsEnabled($boolean)
 {
     if ($boolean == 0) {
-        $AlertEnabled = false;
+        $Enabled = false;
     } else {
-        $AlertEnabled = true;
+        $Enabled = true;
     }
+    return $Enabled;
 }
