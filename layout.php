@@ -52,8 +52,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/config/variables.php');
                 </form>
 
                 <div class="text-end">
-                    <button type="button" class="btn btn-warning me-2 border-3" onclick="document.location.href='/login';">Login</button>
-                    <button type="button" class="btn btn-warning border-3">Sign-up</button>
+                    <button type="button" class="btn btn-warning me-2" onclick="document.location.href='/login';">Login</button>
+                    <button type="button" class="btn btn-warning" onclick="document.location.href='/signup';">Sign-up</button>
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/config/variables.php');
     <div class="container">
         <br>
         <?php
-        if ($AlertEnabled = 1) {
+        if (IsEnabled($Alert)) {
             echo '<div class="alert text-white text-center shadow-sm round bg-' . $AlertColor . '">' . $AlertMessage . '</div>';
         }
         ?>
