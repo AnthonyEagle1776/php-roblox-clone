@@ -21,6 +21,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/config/variables.php');
         // css is not present and nothing will happen
     }
     ?>
+
 </head>
 
 <body>
@@ -30,10 +31,9 @@ include($_SERVER['DOCUMENT_ROOT'] . '/config/variables.php');
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a class="nav-link px-2 text-white"><?php echo $APP_NAME ?></a></li>
                     <li><a href="#" class="nav-link px-2 text-white">Home</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Forum</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Users</a></li>
+                    <li><a href="#" class="nav-link px-2 text-white">Updates</a></li>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
