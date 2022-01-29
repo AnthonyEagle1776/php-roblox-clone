@@ -1,2 +1,1 @@
-Execute these SQL commands on your server to get the site running.
-If you do not the site will literally be unusable due to no authentication.
+Execute the SQL commands on your MySQL workbench or command line of choice. These files are required to run the website.
