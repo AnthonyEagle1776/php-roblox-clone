@@ -5,7 +5,7 @@
                 Login
             </div>
             <div class="card-body">
-                <form autocomplete="false">
+                <form>
                     <div class="mb-3">
                         <label for="Email" class="form-label">Email address</label>
                         <input type="email" class="form-control bg-secondary text-white" id="Email">
@@ -18,7 +18,7 @@
                         <input type="checkbox" class="form-check-input bg-secondary text-white" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Remember Me</label>
                     </div>
-                    <button type="submit" class="btn btn-warning">Submit</button>
+                    <button type="submit" class="btn btn-warning">Login</button>
                 </form>
             </div>
         </div>
