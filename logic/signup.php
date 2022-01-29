@@ -1,11 +1,17 @@
 <?php
 
 if (isset($_POST["submit"])) {
-    $name = $_POST["name"];
+    $username = $_POST["username"];
     $email = $_POST["email"];
     $password = $_POST["password"];
-    $username = $_POST["username"];
-    $passwordRepeat = $_POST["pwdrepeat"];
+    $passwordRepeat = $_POST["passwordRepeat"];
+
+    require_once '../config/db.php';
+
+    /*if (emptyInputSignup() !== false) {
+        header("location: ../signup?error=emptyinput");
+        exit();
+    }*/
 } else {
     header('location: ../signup');
 }
