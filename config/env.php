@@ -1,6 +1,8 @@
 <?php
 // The ENV file which strongly resembles a Laravel project's ENV file. (for ease of use)
 
+// NOTE: Fill in YOUR OWN variables
+
 // app variables
 $APP_NAME = 'RobloxClone';
 $APP_URL = 'localhost';
