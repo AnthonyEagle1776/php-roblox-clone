@@ -223,7 +223,7 @@ function EmptyStatus($Status)
 
 function GetAllStatus($conn)
 {
-    $sql = "SELECT username, status FROM users";
+    $sql = "SELECT username, id, updated_at, status FROM users";
     $result = mysqli_query($conn, $sql);
 
     return $result;
@@ -231,18 +231,44 @@ function GetAllStatus($conn)
 
 function DisplayStatus($result)
 {
+    $User = $_SESSION["UserID"];
+    if (mysqli_num_rows($result) > 0) {
+        // output data of each row
+        while ($row = mysqli_fetch_assoc($result)) {
+            // NOTE fix this empty() hack()
+            // cheaty way of checking if the status is not empty because i apparently didn't null out the status in db
+            if ($row['status'] !== NULL) {
+                if ($row['id'] != $User) {
+                    echo '<h5>' . $row['username'] . ' says...</h5>';
+                    echo '<p>' . $row['status'] . '</p>';
+                    echo '<hr>';
+                } else {
+                    echo '<h5>Nothing to show.</h5>';
+                }
+            }
+        }
+    } else {
+        echo "0 results";
+    }
+}
+
+function DisplayUser($result)
+{
     if (mysqli_num_rows($result) > 0) {
         // output data of each row
         while ($row = mysqli_fetch_assoc($result)) {
             // NOTE fix this empty() hack()
             // cheaty way of checking if the status is not empty because i apparently didn't null out the status in db
             if (!empty($row['status'])) {
-                echo '<h5>' . $row['username'] . ' says...</h5>';
+                echo '<a class="fs-5 text-white" href="/profile?id=' . $row['id'] . '">' . $row['username'] . '</a>';
                 echo '<p>' . $row['status'] . '</p>';
+                echo '<hr>';
+            } else {
+                echo '<a class="fs-5 text-white" href="/profile?id=' . $row['id'] . '">' . $row['username'] . '</a>';
                 echo '<hr>';
             }
         }
     } else {
-        echo "0 results";
+        echo "0 users. Signup today!";
     }
 }

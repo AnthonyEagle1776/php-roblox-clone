@@ -70,7 +70,7 @@ if (UserIsAuthenticated()) {
                                 echo 'href="/"';
                             } ?> class="nav-link px-2 text-white"><i class="fas fa-home"></i>Home</a></li>
                     <li><a href="#" class="nav-link px-2 text-white"><i class="fa fa-comment"></i>Forum</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white"><i class="fas fa-users"></i>Users</a></li>
+                    <li><a href="/users" class="nav-link px-2 text-white"><i class="fas fa-users"></i>Users</a></li>
                     <li><a href="#" class="nav-link px-2 text-white">Updates <span class="badge bg-warning">New</span></a></li>
                 </ul>
 
