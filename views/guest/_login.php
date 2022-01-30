@@ -31,7 +31,7 @@
                 ?>
                 <form method="POST" action="../logic/login.php">
                     <div class="mb-3">
-                        <label for="Username" class="form-label">Email address</label>
+                        <label for="Username" class="form-label">Username</label>
                         <input type="text" class="form-control bg-secondary text-white" id="Username" name="username">
                     </div>
                     <div class="mb-3">
