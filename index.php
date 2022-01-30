@@ -1,5 +1,5 @@
 <?php
-include('config/authchecks.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/config/authchecks.php');
 RequireGuest();
 $css = '<style>this is a test</style>';
 $title = 'Welcome';

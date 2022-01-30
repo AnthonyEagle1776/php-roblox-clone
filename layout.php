@@ -1,6 +1,5 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . '/config/variables.php');
-session_start();
 if (UserIsAuthenticated()) {
     UpdateUser($conn);
 }

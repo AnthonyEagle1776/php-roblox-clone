@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 function UserIsAuthenticated()
 {
     $session = @$_SESSION["UserAuthenticated"];
@@ -12,7 +12,7 @@ function UserIsAuthenticated()
 function RequireAuth()
 {
     if (!UserIsAuthenticated()) {
-        header("location: ../login");
+        header("location: ../login?error=You are not signed in!");
     }
 }
 
