@@ -1,14 +1,26 @@
 <div class="row">
     <div class="col-5" style="margin: auto;">
         <div class="card border-0">
-            <div class="card-header bg-warning text-white">
+            <div class="card-header bg-info text-white">
                 Sign-up
             </div>
             <div class="card-body">
+                <?php
+                // alert section
+                if (isset($_GET["error"])) {
+                ?>
+
+                    <div class="alert alert-danger text-center">
+                        <?php echo $_GET["error"] ?>
+                    </div>
+
+                <?php
+                }
+                ?>
                 <form autocomplete="false" action="../logic/signup.php" method="post">
                     <div class="mb-3">
-                      <label for="Username" class="form-label">Username</label>
-                      <input name="username" type="text" class="form-control bg-secondary text-white" id="Username">
+                        <label for="Username" class="form-label">Username</label>
+                        <input name="username" type="text" class="form-control bg-secondary text-white" id="Username">
                     </div>
                     <div class="mb-3">
                         <label for="Email" class="form-label">Email address</label>
@@ -22,7 +34,7 @@
                         <label for="passwordRepeat" class="form-label">Repeat Password</label>
                         <input name="passwordRepeat" type="password" class="form-control bg-secondary text-white" id="passwordRepeat">
                     </div>
-                    <button type="submit" class="btn btn-warning" name="submit">Sign Up</button>
+                    <button type="submit" class="btn btn-info w-100" name="submit">Sign Up</button>
                 </form>
             </div>
         </div>

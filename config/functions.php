@@ -54,3 +54,138 @@ function IsEnabled($boolean)
     }
     return $Enabled;
 }
+
+// Authentication Functions
+$result;
+function EmptyInputSignup($username, $email, $password, $passwordRepeat)
+{
+    if (empty($username) || empty($email) || empty($password) || empty($passwordRepeat)) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
+
+function InvalidUsername($username)
+{
+    if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
+
+function InvalidEmail($email)
+{
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
+
+function InvalidPasswordMatch($password, $passwordRepeat)
+{
+    if ($password !== $passwordRepeat) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
+
+function UsernameExists($conn, $username)
+{
+    $sql = "SELECT * FROM users WHERE username = ?;";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../signup/?error=databasefailure");
+        exit();
+    }
+
+
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+
+    $Data = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($Data)) {
+        return $row;
+    } else {
+        $result = false;
+        return $result;
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
+function CreateUser($conn, $username, $email, $password)
+{
+    $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ../signup.php?error=databasefailure");
+        exit();
+    }
+
+    // hash password
+    $HashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    mysqli_stmt_bind_param($stmt, "sss", $username, $email, $HashedPassword);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../login?note=🥳 Account created! 🎉 Try logging in below!");
+    exit();
+}
+
+function EmptyInputLogin($username, $password)
+{
+    if (empty($username) || empty($password)) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
+
+function LoginUser($conn, $Username, $Password)
+{
+    $UsernameExists = UsernameExists($conn, $Username, $Username);
+
+    if ($UsernameExists === false) {
+        header("location: ../login/?error=Wrong username or password!");
+    }
+
+    $PasswordHashed = $UsernameExists["password"];
+    $CheckPassword = password_verify($Password, $PasswordHashed);
+
+    if ($CheckPassword === false) {
+        header("location: ../login/?error=Wrong username or password!");
+    } else if ($CheckPassword === true) {
+        session_start();
+        $_SESSION["UserAuthenticated"] = "true";
+        $_SESSION["UserID"] = $UsernameExists["id"];
+        $_SESSION["Username"] = $UsernameExists["username"];
+        $_SESSION["UserEmail"] = $UsernameExists["email"];
+        header("location: ../dashboard/?note=Successfully logged in!");
+        exit();
+    }
+}
+
+function UserIsAuthenticated()
+{
+    $session = @$_SESSION["UserAuthenticated"];
+    if ($session === "true") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function GetUsername()
+{
+    return $_SESSION["Username"];
+}

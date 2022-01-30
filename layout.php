@@ -1,5 +1,7 @@
 <?php
+session_start();
 include($_SERVER['DOCUMENT_ROOT'] . '/config/variables.php');
+
 ?>
 
 
@@ -52,8 +54,18 @@ include($_SERVER['DOCUMENT_ROOT'] . '/config/variables.php');
                 </form>
 
                 <div class="text-end">
-                    <button type="button" class="btn btn-warning me-2" onclick="document.location.href='/login';">Login</button>
-                    <button type="button" class="btn btn-warning" onclick="document.location.href='/signup';">Sign-up</button>
+                    <?php
+                    if (!UserIsAuthenticated()) {
+                    ?>
+                        <button type="button" class="btn btn-warning me-2" onclick="document.location.href='/login';">Login</button>
+                        <button type="button" class="btn btn-warning" onclick="document.location.href='/signup';">Sign-up</button>
+                    <?php
+                    } else {
+                    ?>
+                        <button type="button" class="btn btn-warning" onclick="document.location.href='/logout';">Logout</button>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
