@@ -13,5 +13,6 @@ CREATE TABLE `users` (
   `email` varchar(254) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
-  `updated_at` datetime DEFAULT NULL
+  `updated_at` datetime DEFAULT NULL,
+  `status` varchar(255)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -1,8 +1,6 @@
 <?php
 // functions file
 // all site functions will be held here
-
-// db functions
 function OpenConnection($db_host, $db_username, $db_password, $db)
 {
     $conn = mysqli_connect($db_host, $db_username, $db_password);
@@ -194,4 +192,57 @@ function UpdateUser($conn)
     mysqli_stmt_bind_param($stmt, "s", $User);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
+}
+
+function UpdateStatus($conn, $Status, $uID)
+{
+    $User = $_SESSION["UserID"];
+    $sql = "UPDATE users SET status = ? WHERE id = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ?error=Database Failed!");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ss", $Status, $User);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../dashboard/?note=Status successfully updated.");
+    exit();
+}
+
+function EmptyStatus($Status)
+{
+    if (empty($Status)) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
+
+function GetAllStatus($conn)
+{
+    $sql = "SELECT username, status FROM users";
+    $result = mysqli_query($conn, $sql);
+
+    return $result;
+}
+
+function DisplayStatus($result)
+{
+    if (mysqli_num_rows($result) > 0) {
+        // output data of each row
+        while ($row = mysqli_fetch_assoc($result)) {
+            // NOTE fix this empty() hack()
+            // cheaty way of checking if the status is not empty because i apparently didn't null out the status in db
+            if (!empty($row['status'])) {
+                echo '<h5>' . $row['username'] . ' says...</h5>';
+                echo '<p>' . $row['status'] . '</p>';
+                echo '<hr>';
+            }
+        }
+    } else {
+        echo "0 results";
+    }
 }

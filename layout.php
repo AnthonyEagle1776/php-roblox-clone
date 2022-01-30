@@ -17,13 +17,16 @@ if (UserIsAuthenticated()) {
     <link href="https://bootswatch.com/5/cyborg/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/0c5d709d90.js" crossorigin="anonymous"></script>
 
     <style>
         body {
-            font-family: 'Montserrat', Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-            font-weight: 500;
+            font-family: 'Rubik', Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        }
+
+        .brand {
+            font-weight: 600;
         }
 
         button {
@@ -32,12 +35,17 @@ if (UserIsAuthenticated()) {
 
         header i {
             margin-right: 2.5px;
+            font-weight: 500;
         }
 
         .alert i {
             text-align: center;
             vertical-align: middle;
             line-height: 24px;
+        }
+
+        .card-header {
+            font-size: 1.5rem !important;
         }
     </style>
     <?php
@@ -55,7 +63,7 @@ if (UserIsAuthenticated()) {
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a class="nav-link px-2 text-white"><?php echo $APP_NAME ?></a></li>
+                    <li><a class="nav-link px-2 text-white brand"><?php echo $APP_NAME ?></a></li>
                     <li><a <?php if (UserIsAuthenticated()) {
                                 echo 'href="/dashboard"';
                             } else {
