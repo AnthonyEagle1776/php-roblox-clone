@@ -175,17 +175,23 @@ function LoginUser($conn, $Username, $Password)
     }
 }
 
-function UserIsAuthenticated()
-{
-    $session = @$_SESSION["UserAuthenticated"];
-    if ($session === "true") {
-        return true;
-    } else {
-        return false;
-    }
-}
-
 function GetUsername()
 {
     return $_SESSION["Username"];
+}
+
+function UpdateUser($conn)
+{
+    $User = $_SESSION["UserID"];
+
+    $sql = "UPDATE users SET updated_at = now() WHERE id = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ?error=Database Failed!");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $User);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
 }
