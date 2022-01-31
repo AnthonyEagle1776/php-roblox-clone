@@ -38,6 +38,10 @@ if (UserIsAuthenticated()) {
             font-weight: 500;
         }
 
+        .secondary {
+            background-color: #69228c !important;
+        }
+
         .alert i {
             text-align: center;
             vertical-align: middle;
@@ -59,7 +63,7 @@ if (UserIsAuthenticated()) {
 </head>
 
 <body>
-    <header class="p-3 bg-info">
+    <header class="p-3 bg-info shadow-sm">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -95,7 +99,19 @@ if (UserIsAuthenticated()) {
             </div>
         </div>
     </header>
+    <header class="p-2 secondary">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a class="nav-link px-2 text-white brand"><?php echo $APP_NAME ?></a></li>
+                </ul>
 
+                <div class="text-end">
+
+                </div>
+            </div>
+        </div>
+    </header>
 
     <div class="container">
         <br>

@@ -177,7 +177,8 @@ function GetUsername()
 {
     return $_SESSION["Username"];
 }
-
+// this function is run everytime the user clicks on a page.
+// this will be used to tell if the user is online or not.
 function UpdateUser($conn)
 {
     $User = $_SESSION["UserID"];
@@ -261,14 +262,39 @@ function DisplayUser($result)
             // cheaty way of checking if the status is not empty because i apparently didn't null out the status in db
             if (!empty($row['status'])) {
                 echo '<a class="fs-5 text-white" href="/profile?id=' . $row['id'] . '">' . $row['username'] . '</a>';
+                if (IfIsOnline($row['updated_at'])) {
+                    echo '<span class="badge bg-info fw-normal" style="margin-left: 2.5px;">Online</span>';
+                }
                 echo '<p>' . $row['status'] . '</p>';
                 echo '<hr>';
             } else {
                 echo '<a class="fs-5 text-white" href="/profile?id=' . $row['id'] . '">' . $row['username'] . '</a>';
+                if (IfIsOnline($row['updated_at'])) {
+                    echo '<span class="badge bg-info fw-normal" style="margin-left: 2.5px;">Online</span>';
+                }
                 echo '<hr>';
             }
         }
     } else {
         echo "0 users. Signup today!";
+    }
+}
+
+function IfIsOnline($updated_at)
+{
+    $now = date_create(date('Y-m-d H:i:s'));
+    $updated = date_create($updated_at);
+
+    $now_format = date_format($now, 'Y-m-d H:i:s');
+    $updated_format =  date_format($updated, 'Y-m-d H:i:s');
+
+    $test1 = strtotime($now_format);
+    $test2 = strtotime($updated_format);
+    $hour = abs($test1 - $test2) / (1 * 1);
+
+    if ($hour < 90) {
+        return true;
+    } else {
+        return false;
     }
 }

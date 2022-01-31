@@ -1,6 +1,10 @@
 <?php
-session_start();
 include('env.php');
 include('functions.php');
-
-$conn = OpenConnection($DATABASE_HOST, $DATABASE_USERNAME, $DATABASE_PASSWORD, $DATABASE);
+date_default_timezone_set('America/New_York');
+try {
+    $conn = OpenConnection($DATABASE_HOST, $DATABASE_USERNAME, $DATABASE_PASSWORD, $DATABASE);
+} catch (mysqli_sql_exception $e) {
+    include($_SERVER['DOCUMENT_ROOT'] . '/views/error/500.php');
+    exit();
+}
