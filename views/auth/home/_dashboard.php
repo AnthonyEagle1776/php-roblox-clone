@@ -1,7 +1,28 @@
 <div class="row">
     <div class="col-5">
         <?php
+        // alert section
+        if (isset($_GET["note"])) {
+        ?>
 
+            <div class="alert alert-success text-center">
+                <?php echo $_GET["note"] ?>
+            </div>
+
+        <?php
+        }
+        ?>
+        <?php
+        // alert section
+        if (isset($_GET["error"])) {
+        ?>
+
+            <div class="alert alert-danger text-center">
+                <?php echo $_GET["error"] ?>
+            </div>
+
+        <?php
+        }
         ?>
         <div class="card">
             <div class="card-header bg-info text-white d-flex">
