@@ -22,7 +22,8 @@
                 In Progress
             </div>
             <div class="card-body">
-
+                <h5><i class="fas fa-exclamation-circle text-warning"></i>Admin Panel</h5>
+                <p>1/31/22</p>
             </div>
         </div>
     </div>
@@ -32,7 +33,8 @@
                 To Be Made
             </div>
             <div class="card-body">
-
+                <h5><i class="fas fa-square text-secondary"></i>Forums</h5>
+                <p>1/31/22</p>
             </div>
         </div>
     </div>
