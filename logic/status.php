@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if (isset($_POST["submit"])) {
     $Status = $_POST["status"];
 
