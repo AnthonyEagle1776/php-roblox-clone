@@ -135,7 +135,15 @@ function CreateUser($conn, $username, $email, $password)
     mysqli_stmt_bind_param($stmt, "sss", $username, $email, $HashedPassword);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: ../login?note=🥳 Account created! 🎉 Try logging in below!");
+    // NOTE change all code below to login user instead of redirect/
+    $UsernameExists = UsernameExists($conn, $username, $username);
+    session_start();
+    $_SESSION["UserAuthenticated"] = "true";
+    $_SESSION["UserID"] = $UsernameExists["id"];
+    $_SESSION["Username"] = $UsernameExists["username"];
+    $_SESSION["UserEmail"] = $UsernameExists["email"];
+    $_SESSION["UserAdmin"] = $UsernameExists["admin"];
+    header("location: ../dashboard/?note=Successfully signed up!");
     exit();
 }
 
@@ -168,6 +176,7 @@ function LoginUser($conn, $Username, $Password)
         $_SESSION["UserID"] = $UsernameExists["id"];
         $_SESSION["Username"] = $UsernameExists["username"];
         $_SESSION["UserEmail"] = $UsernameExists["email"];
+        $_SESSION["UserAdmin"] = $UsernameExists["admin"];
         header("location: ../dashboard/?note=Successfully logged in!");
         exit();
     }
@@ -280,10 +289,10 @@ function DisplayUser($result)
     }
 }
 
-function IfIsOnline($updated_at)
+function IfIsOnline($updated_at_timestamp)
 {
     $now = date_create(date('Y-m-d H:i:s'));
-    $updated = date_create($updated_at);
+    $updated = date_create($updated_at_timestamp);
 
     $now_format = date_format($now, 'Y-m-d H:i:s');
     $updated_format =  date_format($updated, 'Y-m-d H:i:s');
@@ -296,5 +305,23 @@ function IfIsOnline($updated_at)
         return true;
     } else {
         return false;
+    }
+}
+
+function IsAdmin($admin_tinyint)
+{
+    if ($admin_tinyint === 0) {
+        return false;
+    } else if ($admin_tinyint === 1 || $admin_tinyint === 2) {
+        return true;
+    }
+}
+
+function IsSuperAdmin($admin_tinyint)
+{
+    if ($admin_tinyint !== 2) {
+        return false;
+    } else {
+        return true;
     }
 }

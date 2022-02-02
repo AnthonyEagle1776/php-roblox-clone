@@ -75,6 +75,13 @@ if (UserIsAuthenticated()) {
                             } ?> class="nav-link px-2 text-white"><i class="fas fa-home"></i>Home</a></li>
                     <li><a href="#" class="nav-link px-2 text-white"><i class="fa fa-comment"></i>Forum</a></li>
                     <li><a href="/users" class="nav-link px-2 text-white"><i class="fas fa-users"></i>Users</a></li>
+                    <?php
+                    if (@IsAdmin($_SESSION['UserAdmin'])) {
+                    ?>
+                        <li><a href="/admin" class="nav-link px-2 text-white"><i class="fas fa-user-shield"></i>Admin</a></li>
+                    <?php
+                    }
+                    ?>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
