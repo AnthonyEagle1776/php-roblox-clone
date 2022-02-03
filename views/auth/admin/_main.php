@@ -2,7 +2,7 @@
     <div class="col-6" style="margin: auto">
         <div class="card">
             <div class="card-body">
-                <a href="#" class="btn-warning btn w-100" style="margin-bottom: 15px">
+                <a href="/admin/settings/" class="btn-warning btn w-100" style="margin-bottom: 15px">
                     Site Settings
                 </a>
                 <a href="#" class="btn-info btn w-100" style="margin-bottom: 15px">

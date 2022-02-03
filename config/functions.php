@@ -304,3 +304,28 @@ function IfIsOnline($updated_at_timestamp)
         return false;
     }
 }
+
+function EmptyAlert($text)
+{
+    if (!empty($text)) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function UpdateAlert($conn, $alert_enabled, $alert_message, $alert_color)
+{
+    $sql = "UPDATE sitesettings SET alert_enabled = ?, alert_message = ?, alert_color = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: ?error=Database Failed!");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "sss", $alert_enabled, $alert_message, $alert_color);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ?note=Alert successfully posted.");
+    exit();
+}
