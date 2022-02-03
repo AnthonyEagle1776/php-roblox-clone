@@ -1,10 +1,6 @@
 <?php
 $css = '
 <style>
-    ::placeholder {
-        color: inherit !important;
-    }
-
     h5 {
         margin: 0 !important;
     }

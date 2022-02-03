@@ -1,6 +1,8 @@
 <?php
 // functions file
 // all site functions will be held here
+
+
 function OpenConnection($db_host, $db_username, $db_password, $db)
 {
     $conn = mysqli_connect($db_host, $db_username, $db_password);
@@ -135,9 +137,9 @@ function CreateUser($conn, $username, $email, $password)
     mysqli_stmt_bind_param($stmt, "sss", $username, $email, $HashedPassword);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    // NOTE change all code below to login user instead of redirect/
     $UsernameExists = UsernameExists($conn, $username, $username);
     session_start();
+    // ANCHOR session variables
     $_SESSION["UserAuthenticated"] = "true";
     $_SESSION["UserID"] = $UsernameExists["id"];
     $_SESSION["Username"] = $UsernameExists["username"];
@@ -180,11 +182,6 @@ function LoginUser($conn, $Username, $Password)
         header("location: ../dashboard/?note=Successfully logged in!");
         exit();
     }
-}
-
-function GetUsername()
-{
-    return $_SESSION["Username"];
 }
 // this function is run everytime the user clicks on a page.
 // this will be used to tell if the user is online or not.
@@ -238,7 +235,6 @@ function GetAllStatus($conn)
 
     return $result;
 }
-
 function DisplayStatus($result)
 {
     $User = $_SESSION["UserID"];
@@ -252,8 +248,6 @@ function DisplayStatus($result)
                     echo '<h5>' . $row['username'] . ' says...</h5>';
                     echo '<p>' . $row['status'] . '</p>';
                     echo '<hr>';
-                } else {
-                    echo '<h5>Nothing to show.</h5>';
                 }
             }
         }
@@ -291,6 +285,9 @@ function DisplayUser($result)
 
 function IfIsOnline($updated_at_timestamp)
 {
+    if ($updated_at_timestamp == null) {
+        return false;
+    }
     $now = date_create(date('Y-m-d H:i:s'));
     $updated = date_create($updated_at_timestamp);
 
@@ -305,23 +302,5 @@ function IfIsOnline($updated_at_timestamp)
         return true;
     } else {
         return false;
-    }
-}
-
-function IsAdmin($admin_tinyint)
-{
-    if ($admin_tinyint === 0) {
-        return false;
-    } else if ($admin_tinyint === 1 || $admin_tinyint === 2) {
-        return true;
-    }
-}
-
-function IsSuperAdmin($admin_tinyint)
-{
-    if ($admin_tinyint !== 2) {
-        return false;
-    } else {
-        return true;
     }
 }
