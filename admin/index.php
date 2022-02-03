@@ -1,6 +1,7 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . '/config/authchecks.php');
 RequireAuth();
+RequireAdmin();
 $title = 'Admin Panel';
-$childView = "../views/auth/_admin.php";
-include('../layout.php');
+$childView = $_SERVER['DOCUMENT_ROOT'] . '/views/auth/admin/_main.php';
+include($_SERVER['DOCUMENT_ROOT'] . '/layout.php');

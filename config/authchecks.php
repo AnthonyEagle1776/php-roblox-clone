@@ -17,9 +17,13 @@ function GetUserAdmin()
 {
     return @$_SESSION["UserAdmin"];
 }
+function GetAuthentication()
+{
+    return @$_SESSION["UserAuthenticated"];
+}
 function UserIsAuthenticated()
 {
-    $session = @$_SESSION["UserAuthenticated"];
+    $session = GetAuthentication();
     if ($session === "true") {
         return true;
     } else {
@@ -28,7 +32,7 @@ function UserIsAuthenticated()
 }
 function UserIsAdmin()
 {
-    $session = @$_SESSION["UserAdmin"];
+    $session = GetUserAdmin();
     if ($session === "true") {
         return true;
     } else {
