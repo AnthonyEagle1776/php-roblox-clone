@@ -11,5 +11,5 @@ $css = '
 include($_SERVER['DOCUMENT_ROOT'] . '/config/authchecks.php');
 RequireAuth();
 $title = 'Roadmap';
-$childView = "../views/auth/_roadmap.php";
+$childView = "../views/auth/_roadmap.html";
 include('../layout.php');
