@@ -8,16 +8,18 @@
                 <form action="/logic/alert.php" method="POST">
                     <label>Enable/Disable Alert</label>
                     <select class="form-select bg-secondary text-white" name="AlertEnabled">
-                        <option class="bg-secondary text-white" selected value="0">Disabled</option>
+                        <option class="bg-secondary text-white" value="null">Enable/Disable Alert</option>
+                        <option class="bg-secondary text-white" value="0">Disabled</option>
                         <option class="bg-secondary text-white" value="1">Enabled</option>
                     </select>
                     <label>Alert Color</label>
                     <select class="form-select bg-secondary text-white" name="AlertColor">
-                        <option class="bg-secondary text-white" selected value="info">Purple</option>
-                        <option class="bg-secondary text-white" value="warning">Orange</option>
-                        <option class="bg-secondary text-white" value="secondary">Gray</option>
-                        <option class="bg-secondary text-white" value="primary">Blue</option>
-                        <option class="bg-secondary text-white" value="danger">Red</option>
+                        <option class="bg-secondary text-white" value="0">Purple</option>
+                        <option class="bg-secondary text-white" value="1">Orange</option>
+                        <option class="bg-secondary text-white" value="2">Gray</option>
+                        <option class="bg-secondary text-white" value="3">Blue</option>
+                        <option class="bg-secondary text-white" value="4">Red</option>
+                        <option class="bg-secondary text-white" value="5">Green</option>
                     </select>
                     <label>Alert Message</label>
                     <input type="text" class="form-control bg-secondary text-white" name="AlertMessage">

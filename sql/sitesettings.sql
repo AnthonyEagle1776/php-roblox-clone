@@ -4,7 +4,7 @@ CREATE TABLE sitesettings (
     site_maintenance BOOLEAN NOT NULL DEFAULT 0,
     /* alert stuff*/
     alert_message VARCHAR(255) DEFAULT (NULL),
-    alert_color VARCHAR(8) DEFAULT 'primary'
+    alert_color VARCHAR(16) DEFAULT 'primary'
 );
 
 /* The defualt settings template with a stock alert and site maintenance disabled. */

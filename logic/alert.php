@@ -1,16 +1,37 @@
 <?php
 if (isset($_POST["submit"])) {
-    $Alert = $_POST["AlertEnabled"];
-    $AlertMessage = $_POST["AlertMessage"];
-    $AlertColor = $_POST["AlertColor"];
+    $Enabled = $_POST["AlertEnabled"];
+    $Message = $_POST["AlertMessage"];
+    $Color = $_POST["AlertColor"];
+
+    $AlertColor;
+
+    if ($Color == 0) {
+        $AlertColor = 'info';
+    } else if ($Color == 1) {
+        $AlertColor = 'warning';
+    } else if ($Color == 2) {
+        $AlertColor = 'secondary';
+    } else if ($Color == 3) {
+        $AlertColor = 'primary';
+    } else if ($Color == 4) {
+        $AlertColor = 'danger';
+    } else if ($Color == 5) {
+        $AlertColor = 'success';
+    } else {
+        header('location: http://localhost/dashboard/');
+        exit();
+    }
+
 
     require_once '../config/db.php';
 
-    if (EmptyAlert($Alert) !== false) {
-        header('location: ../admin/settings/?error=Access Denied!');
+    if (EmptyAlert($Message) !== false) {
+        header('location: ../admin/settings/?error=Please enter an alert message.');
         exit();
     }
-    UpdateAlert($conn, $Alert, $AlertMessage, $AlertColor);
+    UpdateAlert($conn, $Enabled, $Message, $AlertColor);
 } else {
-    header('location: ../admin/settings/?error=Access Denied!');
+    header('location: http://localhost/dashboard/');
+    exit();
 }

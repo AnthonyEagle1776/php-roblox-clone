@@ -319,13 +319,13 @@ function UpdateAlert($conn, $alert_enabled, $alert_message, $alert_color)
     $sql = "UPDATE sitesettings SET alert_enabled = ?, alert_message = ?, alert_color = ?";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ?error=Database Failed!");
+        header("location: http://localhost/?error=Database failed.");
         exit();
     }
 
     mysqli_stmt_bind_param($stmt, "sss", $alert_enabled, $alert_message, $alert_color);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
-    header("location: ?note=Alert successfully posted.");
+    header("location: http://localhost/admin/settings/?note=Alert successfully posted.");
     exit();
 }
