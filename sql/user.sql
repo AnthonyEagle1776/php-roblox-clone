@@ -10,12 +10,13 @@
 
     */
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `email` varchar(254) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` datetime DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,
-  `admin` tinyint(10) NOT NULL DEFAULT 0
+  `admin` tinyint(10) NOT NULL DEFAULT 0,
+   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
