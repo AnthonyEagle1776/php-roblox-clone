@@ -14,6 +14,15 @@
                 <a href="#" class="btn-secondary btn w-100">
                     Banned Users
                 </a>
+                <?php
+                if (IsSuperAdmin(GetUserAdmin())) {
+                ?>
+                    <a href="/phpmyadmin" class="btn-success btn w-100" style="margin-top: 15px">
+                        Database Dashboard
+                    </a>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </div>

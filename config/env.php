@@ -12,4 +12,4 @@ $APP_BUILD_DATE = 'January 28th, 2022';
 $DATABASE = 'RobloxClone';
 $DATABASE_HOST = $APP_URL;
 $DATABASE_USERNAME = 'root';
-$DATABASE_PASSWORD = '';
+$DATABASE_PASSWORD = 'DatabasePass';
