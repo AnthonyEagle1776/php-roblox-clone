@@ -16,6 +16,11 @@ if (mysqli_num_rows($result) > 0) {
         $AlertColor = $row['alert_color'];
         $MaintenanceMode = $row['site_maintenance'];
     }
-} else {
-    echo "0 results";
+}
+
+if ($MaintenanceMode == 1) {
+    if ($_SERVER['SCRIPT_NAME'] != '/maintenance/index.php') {
+        header("Location: " . $serverName . "/maintenance/");
+        die;
+    }
 }

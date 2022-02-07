@@ -8,7 +8,7 @@
                 <a href="#" class="btn-info btn w-100" style="margin-bottom: 15px">
                     Moderation
                 </a>
-                <a href="#" class="btn-danger btn w-100" style="margin-bottom: 15px">
+                <a href="/admin/maintenance/" class="btn-danger btn w-100" style="margin-bottom: 15px">
                     Maintenance
                 </a>
                 <a href="#" class="btn-secondary btn w-100">

@@ -329,3 +329,22 @@ function UpdateAlert($conn, $alert_enabled, $alert_message, $alert_color)
     header("location: http://localhost/admin/settings/?note=Alert successfully posted.");
     exit();
 }
+
+function UpdateMaintenance($conn, $maintenance_boolean)
+{
+    if ($maintenance_boolean == true) {
+        $sql = "UPDATE sitesettings SET site_maintenance = 1";
+    } else {
+        $sql = "UPDATE sitesettings SET site_maintenance = 0";
+    }
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: http://localhost/?error=Database failed.");
+        exit();
+    }
+
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: http://localhost/admin/settings/?note=Entering maintenance...");
+    exit();
+}
