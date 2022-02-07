@@ -13,5 +13,5 @@ h5 {
 include($_SERVER['DOCUMENT_ROOT'] . '/config/authchecks.php');
 RequireAuth();
 $title = 'Dashboard';
-$childView = "../views/auth/home/_dashboard.php";
-include('../layout.php');
+$childView = $_SERVER['DOCUMENT_ROOT'] . "/views/auth/home/_dashboard.php";
+include($_SERVER['DOCUMENT_ROOT'] . '/layout.php');
